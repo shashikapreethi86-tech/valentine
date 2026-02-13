@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Love Arun ❤️</title>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+text-align:center;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(45deg,#ff758c,#ff7eb3,#ff9a9e);
+background-size:400% 400%;
+animation:bg 10s infinite alternate;
+overflow:hidden;
+color:white;
+}
+
+@keyframes bg{
+0%{background-position:left;}
+100%{background-position:right;}
+}
+
+img{
+margin-top:40px;
+width:260px;
+border-radius:20px;
+box-shadow:0 0 25px rgba(0,0,0,0.6);
+}
+
+h1{
+margin-top:20px;
+font-size:36px;
+}
+
+h2{
+font-size:28px;
+color:yellow;
+}
+
+.btn{
+padding:15px 35px;
+font-size:20px;
+margin:15px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+transition:0.3s;
+}
+
+#yesBtn{
+background:red;
+color:white;
+}
+
+#yesBtn:hover{
+transform:scale(1.1);
+}
+
+#noBtn{
+background:gray;
+color:white;
+position:absolute;
+}
+
+#message{
+font-size:30px;
+margin-top:20px;
+color:#fff;
+}
+
+/* floating hearts */
+.heart{
+position:absolute;
+font-size:25px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:1;
+}
+100%{
+transform:translateY(-10vh);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<img src="photo.jpg">
+
+<h1>Dear Arun ❤️</h1>
+
+<h2>நீ என் வாழ்க்கையின் அழகான பரிசு 💖</h2>
+
+<h2>Will you be my Valentine?</h2>
+
+<h2>– Forever yours, Shashika ❤️</h2>
+
+<button id="yesBtn" class="btn" onclick="yesClicked()">Yes ❤️</button>
+
+<button id="noBtn" class="btn">No 💔</button>
+
+<p id="message"></p>
+
+<audio id="song" loop>
+<source src="valithunaiye.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// play song when page clicked
+document.body.addEventListener("click", function(){
+document.getElementById("song").play();
+},{once:true});
+
+
+// yes button message
+function yesClicked(){
+
+document.getElementById("message").innerHTML=
+"நான் உன்னை எப்போதும் காதலிப்பேன் Arun ❤️🥰";
+
+createHeartsBurst();
+
+}
+
+
+// no button messages
+let noTexts=[
+"Please don't do this to me 😢",
+"Try again please 🥺",
+"My heart is only yours ❤️",
+"Don't break my heart Arun 💔",
+"Click Yes please 😭"
+];
+
+let i=0;
+
+const noBtn=document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover",function(){
+
+document.getElementById("message").innerHTML=noTexts[i];
+
+i++;
+if(i>=noTexts.length) i=0;
+
+let x=Math.random()*(window.innerWidth-150);
+let y=Math.random()*(window.innerHeight-100);
+
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+
+});
+
+
+// floating hearts
+function createHeart(){
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*3+2)+"s";
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),5000);
+}
+
+setInterval(createHeart,300);
+
+
+// heart burst when yes clicked
+function createHeartsBurst(){
+
+for(let i=0;i<50;i++){
+
+const heart=document.createElement("div");
+
+heart.innerHTML="💖";
+
+heart.style.position="absolute";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.top=Math.random()*100+"vh";
+
+heart.style.fontSize="30px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),3000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
